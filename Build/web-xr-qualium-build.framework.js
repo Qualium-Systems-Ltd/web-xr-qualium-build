@@ -341,7 +341,9 @@ setTimeout(function () {
     
       XRManager.prototype.onRequestARSession = function () {
         if (!this.isARSupported) return;
-        this.BrowserObject.pauseAsyncCallbacks();
+        if (this.BrowserObject.pauseAsyncCallbacks) {
+          this.BrowserObject.pauseAsyncCallbacks();
+        }
         this.BrowserObject.mainLoop.pause();
         var thisXRMananger = this;
         var tempRender = function () {
@@ -359,14 +361,18 @@ setTimeout(function () {
           thisXRMananger.xrSession = session;
           thisXRMananger.onSessionStarted(session);
         }).catch(function (error) {
-          thisXRMananger.BrowserObject.resumeAsyncCallbacks();
+          if (thisXRMananger.BrowserObject.resumeAsyncCallbacks) {
+            thisXRMananger.BrowserObject.resumeAsyncCallbacks();
+          }
           thisXRMananger.BrowserObject.mainLoop.resume();
         });
       }
     
       XRManager.prototype.onRequestVRSession = function () {
         if (!this.isVRSupported) return;
-        this.BrowserObject.pauseAsyncCallbacks();
+        if (this.BrowserObject.pauseAsyncCallbacks) {
+          this.BrowserObject.pauseAsyncCallbacks();
+        }
         this.BrowserObject.mainLoop.pause();
         var thisXRMananger = this;
         var tempRender = function () {
@@ -384,7 +390,9 @@ setTimeout(function () {
           thisXRMananger.xrSession = session;
           thisXRMananger.onSessionStarted(session);
         }).catch(function (error) {
-          thisXRMananger.BrowserObject.resumeAsyncCallbacks();
+          if (thisXRMananger.BrowserObject.resumeAsyncCallbacks) {
+            thisXRMananger.BrowserObject.resumeAsyncCallbacks();
+          }
           thisXRMananger.BrowserObject.mainLoop.resume();
         });
       }
@@ -431,14 +439,18 @@ setTimeout(function () {
         this.didNotifyUnity = false;
         this.canvas.width = this.canvas.parentElement.clientWidth * this.gameModule.asmLibraryArg._JS_SystemInfo_GetPreferredDevicePixelRatio();
         this.canvas.height = this.canvas.parentElement.clientHeight * this.gameModule.asmLibraryArg._JS_SystemInfo_GetPreferredDevicePixelRatio();
-        
-        this.BrowserObject.pauseAsyncCallbacks();
+
+        if (this.BrowserObject.pauseAsyncCallbacks) {
+          this.BrowserObject.pauseAsyncCallbacks();
+        }
         this.BrowserObject.mainLoop.pause();
         this.ctx.dontClearAlphaOnly = false;
         this.ctx.bindFramebuffer(this.ctx.FRAMEBUFFER);
         var thisXRMananger = this;
         window.setTimeout(function () {
-          thisXRMananger.BrowserObject.resumeAsyncCallbacks();
+          if (thisXRMananger.BrowserObject.resumeAsyncCallbacks) {
+            thisXRMananger.BrowserObject.resumeAsyncCallbacks();
+          }
           thisXRMananger.BrowserObject.mainLoop.resume();
         });
       }
@@ -893,7 +905,9 @@ setTimeout(function () {
           var tempRaf = function (time, xrFrame) {
             if (thisXRMananger.animate(xrFrame))
             {
-              thisXRMananger.BrowserObject.resumeAsyncCallbacks();
+              if (thisXRMananger.BrowserObject.resumeAsyncCallbacks) {
+                thisXRMananger.BrowserObject.resumeAsyncCallbacks();
+              }
               thisXRMananger.BrowserObject.mainLoop.resume();
             } else {
               // No XR session yet
@@ -2680,7 +2694,7 @@ function _emscripten_asm_const_ii(code, a0) {
  return ASM_CONSTS[code](a0);
 }
 STATIC_BASE = GLOBAL_BASE;
-STATICTOP = STATIC_BASE + 5324896;
+STATICTOP = STATIC_BASE + 5325344;
 __ATINIT__.push({
  func: (function() {
   __GLOBAL__sub_I_AccessibilityScriptingClasses_cpp();
@@ -4734,7 +4748,7 @@ __ATINIT__.push({
   ___emscripten_environ_constructor();
  })
 });
-var STATIC_BUMP = 5324896;
+var STATIC_BUMP = 5325344;
 Module["STATIC_BASE"] = STATIC_BASE;
 Module["STATIC_BUMP"] = STATIC_BUMP;
 var tempDoublePtr = STATICTOP;
@@ -5474,7 +5488,7 @@ function _SetWebXREvents(onStartARPtr, onStartVRPtr, onVisibilityChangePtr, onEn
  Module.WebXR.onInputProfilesPtr = onInputProfilesPtr;
 }
 function _SetWebXRSettings(strJson) {
- Module.WebXR.Settings = JSON.parse(Pointer_stringify(strJson));
+ Module.WebXR.Settings = JSON.parse(UTF8ToString(strJson));
  console.log(Module.WebXR.Settings);
 }
 var webSocketInstances = [];
@@ -18858,8 +18872,8 @@ function nullFunc_vjji(x) {
  err("Build with ASSERTIONS=2 for more info.");
  abort(x);
 }
-Module["wasmTableSize"] = 210118;
-Module["wasmMaxTableSize"] = 210118;
+Module["wasmTableSize"] = 210126;
+Module["wasmMaxTableSize"] = 210126;
 function invoke_dddi(index, a1, a2, a3) {
  var sp = stackSave();
  try {
