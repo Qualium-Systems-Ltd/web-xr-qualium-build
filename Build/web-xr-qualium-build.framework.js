@@ -341,9 +341,7 @@ setTimeout(function () {
     
       XRManager.prototype.onRequestARSession = function () {
         if (!this.isARSupported) return;
-        if (this.BrowserObject.pauseAsyncCallbacks) {
-          this.BrowserObject.pauseAsyncCallbacks();
-        }
+        this.BrowserObject.pauseAsyncCallbacks();
         this.BrowserObject.mainLoop.pause();
         var thisXRMananger = this;
         var tempRender = function () {
@@ -361,18 +359,14 @@ setTimeout(function () {
           thisXRMananger.xrSession = session;
           thisXRMananger.onSessionStarted(session);
         }).catch(function (error) {
-          if (thisXRMananger.BrowserObject.resumeAsyncCallbacks) {
-            thisXRMananger.BrowserObject.resumeAsyncCallbacks();
-          }
+          thisXRMananger.BrowserObject.resumeAsyncCallbacks();
           thisXRMananger.BrowserObject.mainLoop.resume();
         });
       }
     
       XRManager.prototype.onRequestVRSession = function () {
         if (!this.isVRSupported) return;
-        if (this.BrowserObject.pauseAsyncCallbacks) {
-          this.BrowserObject.pauseAsyncCallbacks();
-        }
+        this.BrowserObject.pauseAsyncCallbacks();
         this.BrowserObject.mainLoop.pause();
         var thisXRMananger = this;
         var tempRender = function () {
@@ -390,9 +384,7 @@ setTimeout(function () {
           thisXRMananger.xrSession = session;
           thisXRMananger.onSessionStarted(session);
         }).catch(function (error) {
-          if (thisXRMananger.BrowserObject.resumeAsyncCallbacks) {
-            thisXRMananger.BrowserObject.resumeAsyncCallbacks();
-          }
+          thisXRMananger.BrowserObject.resumeAsyncCallbacks();
           thisXRMananger.BrowserObject.mainLoop.resume();
         });
       }
@@ -439,18 +431,14 @@ setTimeout(function () {
         this.didNotifyUnity = false;
         this.canvas.width = this.canvas.parentElement.clientWidth * this.gameModule.asmLibraryArg._JS_SystemInfo_GetPreferredDevicePixelRatio();
         this.canvas.height = this.canvas.parentElement.clientHeight * this.gameModule.asmLibraryArg._JS_SystemInfo_GetPreferredDevicePixelRatio();
-
-        if (this.BrowserObject.pauseAsyncCallbacks) {
-          this.BrowserObject.pauseAsyncCallbacks();
-        }
+        
+        this.BrowserObject.pauseAsyncCallbacks();
         this.BrowserObject.mainLoop.pause();
         this.ctx.dontClearAlphaOnly = false;
         this.ctx.bindFramebuffer(this.ctx.FRAMEBUFFER);
         var thisXRMananger = this;
         window.setTimeout(function () {
-          if (thisXRMananger.BrowserObject.resumeAsyncCallbacks) {
-            thisXRMananger.BrowserObject.resumeAsyncCallbacks();
-          }
+          thisXRMananger.BrowserObject.resumeAsyncCallbacks();
           thisXRMananger.BrowserObject.mainLoop.resume();
         });
       }
@@ -905,9 +893,7 @@ setTimeout(function () {
           var tempRaf = function (time, xrFrame) {
             if (thisXRMananger.animate(xrFrame))
             {
-              if (thisXRMananger.BrowserObject.resumeAsyncCallbacks) {
-                thisXRMananger.BrowserObject.resumeAsyncCallbacks();
-              }
+              thisXRMananger.BrowserObject.resumeAsyncCallbacks();
               thisXRMananger.BrowserObject.mainLoop.resume();
             } else {
               // No XR session yet
@@ -5488,7 +5474,7 @@ function _SetWebXREvents(onStartARPtr, onStartVRPtr, onVisibilityChangePtr, onEn
  Module.WebXR.onInputProfilesPtr = onInputProfilesPtr;
 }
 function _SetWebXRSettings(strJson) {
- Module.WebXR.Settings = JSON.parse(UTF8ToString(strJson));
+ Module.WebXR.Settings = JSON.parse(Pointer_stringify(strJson));
  console.log(Module.WebXR.Settings);
 }
 var webSocketInstances = [];
@@ -18872,8 +18858,8 @@ function nullFunc_vjji(x) {
  err("Build with ASSERTIONS=2 for more info.");
  abort(x);
 }
-Module["wasmTableSize"] = 210126;
-Module["wasmMaxTableSize"] = 210126;
+Module["wasmTableSize"] = 210122;
+Module["wasmMaxTableSize"] = 210122;
 function invoke_dddi(index, a1, a2, a3) {
  var sp = stackSave();
  try {
