@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | QS WEBXR Room Exploration</title>
-    <meta name="description" content="Room Exploration">
+    <meta name="description" content="">
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
@@ -29,11 +29,11 @@
     </div>
     <script>
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/web-xr-qualium-build.loader.js";
+      var loaderUrl = buildUrl + "/buildWEBXR.loader.js";
       var config = {
-        dataUrl: buildUrl + "/web-xr-qualium-build.data",
-        frameworkUrl: buildUrl + "/web-xr-qualium-build.framework.js",
-        codeUrl: buildUrl + "/web-xr-qualium-build.wasm",
+        dataUrl: buildUrl + "/buildWEBXR.data",
+        frameworkUrl: buildUrl + "/buildWEBXR.framework.js",
+        codeUrl: buildUrl + "/buildWEBXR.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Qualium Systems",
         productName: "QS WEBXR Room Exploration",
@@ -47,7 +47,7 @@
       var progressBarFull = document.querySelector("#unity-progress-bar-full");
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var unityInstance = null;
-      QS WEBXR Room Exploration
+      
 
       canvasContainer.style.width = "960px";
       canvasContainer.style.height = "600px";
