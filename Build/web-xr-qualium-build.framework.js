@@ -2411,7 +2411,7 @@ function _emscripten_asm_const_ii(code, a0) {
  return ASM_CONSTS[code](a0);
 }
 STATIC_BASE = GLOBAL_BASE;
-STATICTOP = STATIC_BASE + 3450832;
+STATICTOP = STATIC_BASE + 3459152;
 __ATINIT__.push({
  func: (function() {
   __GLOBAL__sub_I_AccessibilityScriptingClasses_cpp();
@@ -4465,7 +4465,7 @@ __ATINIT__.push({
   ___emscripten_environ_constructor();
  })
 });
-var STATIC_BUMP = 3450832;
+var STATIC_BUMP = 3459152;
 Module["STATIC_BASE"] = STATIC_BASE;
 Module["STATIC_BUMP"] = STATIC_BUMP;
 var tempDoublePtr = STATICTOP;
@@ -4479,6 +4479,22 @@ function _ControllerPulse(controller, intensity, duration) {
    "duration": duration
   }
  });
+}
+function _GetDynamicMemorySize() {
+ if (typeof DYNAMICTOP !== "undefined") {
+  return DYNAMICTOP - DYNAMIC_BASE;
+ } else {
+  return HEAP32[DYNAMICTOP_PTR >> 2] - DYNAMIC_BASE;
+ }
+}
+function _GetStaticMemorySize() {
+ return STATICTOP - STATIC_BASE;
+}
+function _GetTotalMemorySize() {
+ return TOTAL_MEMORY;
+}
+function _GetTotalStackSize() {
+ return TOTAL_STACK;
 }
 function _InitControllersArray(byteOffset) {
  Module.ControllersArrayOffset = byteOffset / 4;
@@ -20580,6 +20596,10 @@ Module.asmLibraryArg = {
  "invoke_vjiiii": invoke_vjiiii,
  "invoke_vjji": invoke_vjji,
  "_ControllerPulse": _ControllerPulse,
+ "_GetDynamicMemorySize": _GetDynamicMemorySize,
+ "_GetStaticMemorySize": _GetStaticMemorySize,
+ "_GetTotalMemorySize": _GetTotalMemorySize,
+ "_GetTotalStackSize": _GetTotalStackSize,
  "_InitControllersArray": _InitControllersArray,
  "_InitHandsArray": _InitHandsArray,
  "_InitViewerHitTestPoseArray": _InitViewerHitTestPoseArray,
